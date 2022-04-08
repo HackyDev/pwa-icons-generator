@@ -52,7 +52,8 @@ Generates **5 icons** (as in the previous example) and applies some options.
     ext: 'jpeg'
     // other options are available
   }
-  const result = await pwaIconsGenerator('files/fg-square.svg', config)
+
+  const output = await pwaIconsGenerator('files/fg-square.svg', config)
 ```
 
 ### Usage advanced
@@ -128,38 +129,40 @@ Generates **5 default icons** and **1 additional**
 This is an example of how you can separate icons to be used in `manifest.json` and `index.html`
 
 ```
-    const myIcons: PrimaryConfig['icons']  = [{
-      name: 'my-icon',
-      width: 1280,
-      height: 720,
-      linkTag: {
-        attributes: { 'my-attribute': 'my-value' }
-      }
-    }, {
-      name: 'my-manifest-icon',
-      width: 1000,
-      height: 1000,
-      outDirectory: 'dist/manifest-icons',
-      pathPrefix: '/manifest-icons',
-      manifest: true
-    }]
-    const config: PrimaryConfig = {
-      fg: 'files/fg-square.svg',
-      icons: [...myIcons]
+  const myIcons: PrimaryConfig['icons']  = [{
+    name: 'my-icon',
+    width: 1280,
+    height: 720,
+    linkTag: {
+      attributes: { 'my-attribute': 'my-value' }
     }
-    const output: Output = await pwaIconsGenerator(config)
+  }, {
+    name: 'my-manifest-icon',
+    width: 1000,
+    height: 1000,
+    outDirectory: 'dist/manifest-icons',
+    pathPrefix: '/manifest-icons',
+    manifest: true
+  }]
 
- /* OUTPUT (some properties omitted)
+  const config: PrimaryConfig = {
+    fg: 'files/fg-square.svg',
+    icons: [...myIcons]
+  }
+
+  const output: Output = await pwaIconsGenerator(config)
+
+/* OUTPUT (some properties omitted)
   {
-      linkTags: '<link href="my-icon.png" my-attribute="my-value">',
-      manifest: {
-        icons: [{
-            src: '/manifest-icons/my-manifest-icon.png',
-            type: 'image/png',
-            sizes: '1000x1000'
-         }]
-      }
+    linkTags: '<link href="my-icon.png" my-attribute="my-value">',
+    manifest: {
+      icons: [{
+        src: '/manifest-icons/my-manifest-icon.png',
+        type: 'image/png',
+        sizes: '1000x1000'
+      }]
     }
+  }
 */
 ```
 
@@ -172,16 +175,16 @@ In the example below `my-icon` icon will use `files/fg-square.svg` as a foregrou
 
 ```
   const config: PrimaryConfig = {
-      fg: 'files/fg-square.svg',
-      icons: [{
-          name: 'my-icon',
-          width: 1280,
-          height: 720
-      }, {
-          name: 'my-icon-2',
-          width: 1000,
-          height: 1000,
-          fg: 'files/fg-rect-vert.svg'
-      }]
+    fg: 'files/fg-square.svg',
+    icons: [{
+      name: 'my-icon',
+      width: 1280,
+      height: 720
+    }, {
+      name: 'my-icon-2',
+      width: 1000,
+      height: 1000,
+      fg: 'files/fg-rect-vert.svg'
+    }]
   }
 ```
