@@ -42,7 +42,7 @@ const foregroundImage = `files/fg-square.svg` // local file or URL
 const output: Output = await pwaIconsGenerator(foregroundImage)
 ```
 ##### Example 2
-Generates ** 5 icons** (as in the previous example) and applies some options.
+Generates **5 icons** (as in the previous example) and applies some options.
 
 ```
   const config: SecondaryConfig = {
@@ -50,7 +50,7 @@ Generates ** 5 icons** (as in the previous example) and applies some options.
     padding: '10%',
     outDirectory: 'dist/icons',
     ext: 'jpeg'
-	// other options are available
+    // other options are available
   }
   const result = await pwaIconsGenerator('files/fg-square.svg', config)
 ```
@@ -148,9 +148,9 @@ This is an example of how you can separate icons to be used in `manifest.json` a
       icons: [...myIcons]
     }
     const output: Output = await pwaIconsGenerator(config)
-	
-/* OUTPUT (some properties omitted)
-	{
+
+ /* OUTPUT (some properties omitted)
+  {
       linkTags: '<link href="my-icon.png" my-attribute="my-value">',
       manifest: {
         icons: [{
@@ -174,14 +174,14 @@ In the example below `my-icon` icon will use `files/fg-square.svg` as a foregrou
   const config: PrimaryConfig = {
       fg: 'files/fg-square.svg',
       icons: [{
-	      name: 'my-icon',
+          name: 'my-icon',
           width: 1280,
           height: 720
-	  }, {
-	      name: 'my-icon-2',
+      }, {
+          name: 'my-icon-2',
           width: 1000,
           height: 1000,
-		   fg: 'files/fg-rect-vert.svg'
-	  }]
+          fg: 'files/fg-rect-vert.svg'
+      }]
   }
 ```
