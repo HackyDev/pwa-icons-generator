@@ -436,4 +436,4 @@ const getFileFromUrl = (() => {
 })()
 
 export { processAndCopyMainParams, createTargetConfig, createTargetIcons, getImageSourceType, processTargetIcons, createOutput }
-export type { PrimaryConfig, SecondaryConfig, Output }
+export type { PrimaryConfig, SecondaryConfig, Output, PrimaryConfigIcon }
