@@ -116,4 +116,4 @@ declare function processTargetIcons(icons: TargetIcon[]): Promise<void>;
 declare function createOutput(icons: TargetIcon[]): Promise<Output>;
 declare function getImageSourceType(value: string): "color" | "path" | "url";
 export { processAndCopyMainParams, createTargetConfig, createTargetIcons, getImageSourceType, processTargetIcons, createOutput };
-export type { PrimaryConfig, SecondaryConfig, Output };
+export type { PrimaryConfig, SecondaryConfig, Output, PrimaryConfigIcon };

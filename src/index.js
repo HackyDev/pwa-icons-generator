@@ -15,8 +15,8 @@ if (process.argv[2] === 'start') {
 }
 /**
  * You only need **5 icons** to meet most needs! Explained [here](https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs)
-  ```javascript
-    import pwaIconsGenerator from 'pwa-icons-generator'
+  ```typescript
+    import pwaIconsGenerator, { Output } from 'pwa-icons-generator'
 
     const foregroundImage = `https://upload.wikimedia.org/wikipedia/commons/9/94/Cc_large.png`
     const output: Output = await pwaIconsGenerator(foregroundImage)

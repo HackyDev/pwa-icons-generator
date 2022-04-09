@@ -1,3 +1,4 @@
+import { PrimaryConfigIcon } from './helpers';
 declare type DefaultConfig = {
     projectNameCamel: string;
     fg: string;
@@ -23,7 +24,7 @@ declare type DefaultIcon = {
         attributes: Record<string, string | number>;
     };
 };
-declare function getDefaultIcons(): DefaultIcon[];
+declare function getDefaultIcons(): PrimaryConfigIcon[];
 declare function getDefaultConfig(): DefaultConfig;
 export { getDefaultConfig, getDefaultIcons };
 export type { DefaultConfig, DefaultIcon };
