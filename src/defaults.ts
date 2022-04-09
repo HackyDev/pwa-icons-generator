@@ -1,3 +1,5 @@
+import { PrimaryConfigIcon } from './helpers'
+
 type DefaultConfig = {
   projectNameCamel: string
   fg: string
@@ -26,7 +28,7 @@ type DefaultConfig = {
   }
 
 function getDefaultIcons () {
-  const icons: DefaultIcon[] = [{
+  const icons: PrimaryConfigIcon[] = [{
     name: 'favicon',
     width: 32,
     height: 32,
