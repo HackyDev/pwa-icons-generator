@@ -17,7 +17,6 @@ import {
   createSvgResourceFromBuffer,
   createSvgResourceFromFile
 } from './modules/SvgResource'
-import { type } from 'os'
 
 type Output = {
   items: {
