@@ -118,13 +118,18 @@ class SvgResource {
     let paddingOffset = 1
 
     const parent = {
-      width: Number(parentNode.attributes.width),
-      height: Number(parentNode.attributes.height)
+      width: parseInt(parentNode.attributes.width),
+      height: parseInt(parentNode.attributes.height)
     }
     const child = {
-      width: Number(childNode.attributes.width),
-      height: Number(childNode.attributes.height)
+      width: parseInt(childNode.attributes.width),
+      height: parseInt(childNode.attributes.height)
     }
+
+    parentNode.attributes.width = String(parent.width)
+    parentNode.attributes.height = String(parent.height)
+    childNode.attributes.width = String(child.width)
+    childNode.attributes.height = String(child.height)
 
     if (padding.unit === '%') {
       paddingOffset = 1 - padding.value / 100
@@ -143,7 +148,6 @@ class SvgResource {
 
     y = (parent.height - child.height * scale) / 2
     x = (parent.width - child.width * scale) / 2
-
     return {
       name: 'g',
       type: 'element',
@@ -159,13 +163,18 @@ class SvgResource {
     let scale = 1
 
     const parent = {
-      width: Number(parentNode.attributes.width),
-      height: Number(parentNode.attributes.height)
+      width: parseInt(parentNode.attributes.width),
+      height: parseInt(parentNode.attributes.height)
     }
     const child = {
-      width: Number(childNode.attributes.width),
-      height: Number(childNode.attributes.height)
+      width: parseInt(childNode.attributes.width),
+      height: parseInt(childNode.attributes.height)
     }
+
+    parentNode.attributes.width = String(parent.width)
+    parentNode.attributes.height = String(parent.height)
+    childNode.attributes.width = String(child.width)
+    childNode.attributes.height = String(child.height)
 
     if (child.width / child.height > parent.width / parent.height) {
       scale = parent.height / child.height
@@ -409,5 +418,23 @@ async function createSvgResourceFromFile (filepath: string) {
     bufferImageType
   })
 }
+
+// UTILS
+
+// function fixColor (color: string) {
+//   function isHexColor (color: string) {
+//     return /^#([A-Fa-f0-9]{3}){1,2}$/.test(color)
+//   }
+//   if (isHexColor(color)) {
+//     let split = color.substring(1).split('')
+//     if (split.length === 3) {
+//       split = [split[0], split[0], split[1], split[1], split[2], split[2]]
+//     }
+//     const fixed = Number('0x' + split.join(''))
+//     return 'rgba(' + [(fixed >> 16) & 255, (fixed >> 8) & 255, fixed & 255].join(',') + ',1)'
+//   } else {
+//     return color
+//   }
+// }
 
 export { SvgResource, createSvgResourceFromColor, createSvgResourceFromBuffer, createSvgResourceFromFile }

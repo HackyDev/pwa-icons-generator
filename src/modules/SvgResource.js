@@ -70,13 +70,17 @@ class SvgResource {
         let y = 0;
         let paddingOffset = 1;
         const parent = {
-            width: Number(parentNode.attributes.width),
-            height: Number(parentNode.attributes.height)
+            width: parseInt(parentNode.attributes.width),
+            height: parseInt(parentNode.attributes.height)
         };
         const child = {
-            width: Number(childNode.attributes.width),
-            height: Number(childNode.attributes.height)
+            width: parseInt(childNode.attributes.width),
+            height: parseInt(childNode.attributes.height)
         };
+        parentNode.attributes.width = String(parent.width);
+        parentNode.attributes.height = String(parent.height);
+        childNode.attributes.width = String(child.width);
+        childNode.attributes.height = String(child.height);
         if (padding.unit === '%') {
             paddingOffset = 1 - padding.value / 100;
         }
@@ -107,13 +111,17 @@ class SvgResource {
         let y = 0;
         let scale = 1;
         const parent = {
-            width: Number(parentNode.attributes.width),
-            height: Number(parentNode.attributes.height)
+            width: parseInt(parentNode.attributes.width),
+            height: parseInt(parentNode.attributes.height)
         };
         const child = {
-            width: Number(childNode.attributes.width),
-            height: Number(childNode.attributes.height)
+            width: parseInt(childNode.attributes.width),
+            height: parseInt(childNode.attributes.height)
         };
+        parentNode.attributes.width = String(parent.width);
+        parentNode.attributes.height = String(parent.height);
+        childNode.attributes.width = String(child.width);
+        childNode.attributes.height = String(child.height);
         if (child.width / child.height > parent.width / parent.height) {
             scale = parent.height / child.height;
         }
