@@ -1,12 +1,15 @@
 import pwaIconsGenerator, { getDefaultIcons } from '../src'
-import { getOutput } from './outputs'
+import { getExampleOutput } from './example-outputs'
+import { getBuildHashes } from './build-hashes'
+import { getPrimaryConfigIcons } from './primary-config-items'
+import fs from 'fs'
+import { simpleHash } from './utils'
+jest.setTimeout(120000)
 
-jest.setTimeout(20000)
-
-describe('Examples from Readme.md', () => {
+describe('Tests outputs for examples from Readme.md', () => {
   test('Example 1', async () => {
     const output = await pwaIconsGenerator('files/fg-square.svg')
-    const expected = getOutput('example1')
+    const expected = getExampleOutput('example1')
     expect(output).toEqual(expected)
   })
 
@@ -18,7 +21,7 @@ describe('Examples from Readme.md', () => {
       ext: 'jpeg' as const
     }
     const output = await pwaIconsGenerator('files/fg-square.svg', config)
-    const expected = getOutput('example2')
+    const expected = getExampleOutput('example2')
     expect(output).toEqual(expected)
   })
 
@@ -37,7 +40,7 @@ describe('Examples from Readme.md', () => {
       icons: [...myIcons]
     }
     const output = await pwaIconsGenerator(config)
-    const expected = getOutput('example3')
+    const expected = getExampleOutput('example3')
     expect(output).toEqual(expected)
   })
 
@@ -56,7 +59,7 @@ describe('Examples from Readme.md', () => {
       icons: [...myIcons]
     }
     const output = await pwaIconsGenerator(config)
-    const expected = getOutput('example3')
+    const expected = getExampleOutput('example3')
     expect(output).toEqual(expected)
   })
 
@@ -76,7 +79,7 @@ describe('Examples from Readme.md', () => {
       icons: [...defaultIcons, ...myIcons]
     }
     const output = await pwaIconsGenerator(config)
-    const expected = getOutput('example5')
+    const expected = getExampleOutput('example5')
     expect(output).toEqual(expected)
   })
 
@@ -101,19 +104,28 @@ describe('Examples from Readme.md', () => {
       icons: [...myIcons]
     }
     const output = await pwaIconsGenerator(config)
-    const expected = getOutput('example6')
+    const expected = getExampleOutput('example6')
     expect(output).toEqual(expected)
   })
 })
 
-// describe('Main function with primary configs', () => {
-//   test('Config 1 output', async () => {
-//     const outputKey = 'output3'
-//     const config = {
-//       bg: 'green',
-//       padding: '20%',
-//       icons: getPrimaryConfigIcons(`dist/${outputKey}`)
-//     }
-//     return await pwaIconsGenerator(config)
-//   })
-// })
+describe('Builds variations and compares hashes', () => {
+  test('Config 1 output1', async () => {
+    const outputKey = 'output1'
+    const outputDirectory = `dist/${outputKey}`
+    const config = {
+      bg: 'green',
+      padding: '20%',
+      icons: getPrimaryConfigIcons(outputDirectory)
+    }
+    const output: Record<string, string> = {}
+    const { items } = await pwaIconsGenerator(config)
+    for (const item of items) {
+      const file = fs.readFileSync(`${item.outDirectory}/${item.path}`)
+      const hash = simpleHash(file)
+      output[item.name] = hash
+    }
+    const expected = getBuildHashes(outputKey)
+    expect(output).toEqual(expected)
+  })
+})

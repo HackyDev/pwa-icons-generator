@@ -1,6 +1,6 @@
 import { Output } from '../src/helpers'
 
-function getOutput (key: string) {
+function getExampleOutput (key: string) {
   const outputs: Record<string, Output> = {
     example1: {
       items: [
@@ -276,4 +276,4 @@ function getOutput (key: string) {
   return outputs[key]
 }
 
-export { getOutput }
+export { getExampleOutput }
