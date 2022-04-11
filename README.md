@@ -27,7 +27,7 @@ npm i -D pwa-icons-generator
 ```
 
 ### Importing everything you may need
-```
+```js
 import pwaIconsGenerator, { getDefaultIcons } from 'pwa-icons-generator'
 import type { PrimaryConfig, SecondaryConfig, Output } from 'pwa-icons-generator'
 ```
@@ -37,14 +37,14 @@ import type { PrimaryConfig, SecondaryConfig, Output } from 'pwa-icons-generator
 ##### Example 1
 Generates **5 icons** and saves them to `dist` folder
 
-```
+```js
 const foregroundImage = `files/fg-square.svg` // local file or URL
 const output: Output = await pwaIconsGenerator(foregroundImage)
 ```
 ##### Example 2
 Generates **5 icons** (as in the previous example) and applies some options.
 
-```
+```js
   const config: SecondaryConfig = {
     bg: 'black', // color or image to use as background
     padding: '10%',
@@ -60,7 +60,7 @@ Generates **5 icons** (as in the previous example) and applies some options.
 
 ##### Example 3
 If you want to generate **custom icons**, here's how you do it.
-```
+```js
   const myIcons: PrimaryConfig['icons'] = [{
     name: 'my-icon',
     width: 1280,
@@ -79,7 +79,7 @@ If you want to generate **custom icons**, here's how you do it.
   const output: Output = await pwaIconsGenerator(config)
 ```
 ##### Example 4 (same result  as 3)
-```
+```js
   const myIcons: PrimaryConfig['icons'] = [{
     name: 'my-icon',
     width: 1280,
@@ -102,7 +102,7 @@ If you want to generate **custom icons**, here's how you do it.
 If you want to use default icons as well as custom icons, here's how you do it.
 
 Generates **5 default icons** and **1 additional**
-```
+```js
   const defaultIcons = getDefaultIcons()
 
   const myIcons: PrimaryConfig['icons'] = [{
@@ -128,7 +128,7 @@ Generates **5 default icons** and **1 additional**
 ##### Example 6
 This is an example of how you can separate icons to be used in `manifest.json` and `index.html`
 
-```
+```js
   const myIcons: PrimaryConfig['icons']  = [{
     name: 'my-icon',
     width: 1280,
@@ -173,7 +173,7 @@ This is an example of how you can separate icons to be used in `manifest.json` a
 - Options in icons **override** options in config. 
 In the example below `my-icon` icon will use `files/fg-square.svg` as a foreground image while `my-icon-2` will use `files/fg-rect-vert.svg`
 
-```
+```js
   const config: PrimaryConfig = {
     fg: 'files/fg-square.svg',
     icons: [{
