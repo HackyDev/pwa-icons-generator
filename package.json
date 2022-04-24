@@ -6,6 +6,7 @@
   "author": "HackyDev",
   "main": "src/index.js",
   "types": "src/index.d.ts",
+  "homepage": "https://github.com/HackyDev/pwa-icons-generator#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/HackyDev/pwa-icons-generator.git"
